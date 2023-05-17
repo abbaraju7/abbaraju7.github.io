@@ -94,10 +94,10 @@
         </div> -->
         
         <div class="portfolio-description">
-          <h2>Python Conventions</h2>
+          <h2>Python Conventions (C/ C++ too!)</h2>
           <p align="justify">Source files should be broken into manageable pieces with meaningful names. Every source file must have a comment block at the top identifying the name of the file, its contents, and revision history. (See Matlab exception, below.) A sample is (copyright is an optional element): </p>
           <xmp>
-            /* --- trajectoryControl.py       Version 1.1 
+            /* --- trajControl.py       Version 1.1 
                --- This module continuously cycles through a trajectory specified by a series of 
                --- via points. Each via point consists of 6 joint values (radians), speed value (in percent), 
                --- and delay value (in seconds).
@@ -110,8 +110,54 @@
                --- 
                --- */
           </xmp>
-          <p>Different languages have different syntax, but the idea is the same.
+          <p>Different languages have different syntax, but the idea is the same. </p>
+          <p>In addition, all functions will have a comment block immediately above it, describing what it does and any arguments and return values. Use frequent comments throughout the code that add meaningful information. <strong>Never add the following type of meaningless comments:</strong></p>
+          <xmp> 
+            x = 7;  /* assign 7 to an integar variable x */
+          </xmp>
+          <p>This comment doesn't add any information! Instead, do something like this: </p>
+          <xmp>
+            Xdesired = 10;  /* initialize X desired prior to start up */ 
+          </xmp>
+          <p>"Xdesired" is a meaningful representation of variable name and provides context for code reviewers. </p>
+          <p><strong>Never assume any piece of code to be temporary or test code.</strong> Start coding with comments and proper variable definitions. Additional coding conventions we should be following: </p>
+          <ul>
+            <li>Never put executable code in header files (*.h files).</li>
+            <li>Variable names should be descriptive, start with a small letter (unless other conventions prevail), and use caps only to delimit words (lower camel casing): rightwheelSpeed</li>
+            <li>Class names are also descriptive, start with an upper letter (unless other conventions prevail), and use caps only to delimit words (upper camel casing): TrajController</li>
+            <li>Global variables, when justified, must end in "G": robotPositionG</li>
+          </ul>
         </div>
+
+        <div class="portfolio-description">
+          <h2>MatLab Conventions</h2>
+          <p align="justify">MatLab coding style is similar to python coding style. Some additions: </p>
+          <ul>
+            <li>Create functions whenever possible (not straightline code scripts). Scripts have value, but are dependent on context.</li>
+            <li>Always include a "help" block at the beginning of your function code. This should include a description of the function, the calling convention (function name, arguments and outputs), and descriptions of the inputs/outputs. Include any default values or optional parameters. </li>
+            <li>Use upper case variables for matrices, lower case for vectors (Vmax and vmax)</li>
+            <li>Include liberal and meaningful comments to explain what you are doing and why</li>
+          </ul>
+          <p>To include a help block, put contiguous comments at the beginning of your function:</p>
+          <xmp>
+            function Torque = myFunction(Force)
+            %%% Torque = myFunction(Force, vizFlag)
+            %%%
+            %%% This function computes the torque at all the joints of the PUMA 560 manipulator, given the desired force at the 
+            %%%   end effector. Gravity is considered. This is dependent on the Jacobian, which is computed internally.
+            %%%
+            %%% Force - vector or optional matrix of generalized forces at the end effector: [Fx, Fy, Fz, Tx, Ty, Tz] in row-vector form.
+            %%%     If multiple row-vectors are provided, the program steps through each one.
+            %%% vizFlag - optional flag that displays a graph of the force vector if non-zero. (default is zero)
+            %%%
+            %%% Torque - vector of torques of the six joints of the manipulator: [T1, T2, T3, T4, T5, T6]. If Force is a matrix of 
+            %%%      row-vectors, then Torque will have an equal number of row-vectors.
+            %%% This comment is not part of the help as it is not contiguous.
+            % Good place for revision history, etc.
+          </xmp>
+          <p>NOTE: If you put a comment block at the very top of your file for a ".m" file, it will appear as your "help". So, the filename and revision history, as noted under "C Conventions", should not preempt the help. (You should always test functionality and "help" is no different!) </p>
+        </div>
+
       </div>
     </section><!-- End Portfolio Details Section -->
 
