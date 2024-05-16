@@ -229,7 +229,7 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/astemoW1.jpg") top center;
+  background: url("../img/astemoW3H.jpg") top center;
   background-size: cover;
 }
 
@@ -246,7 +246,7 @@ h6 {
 
 #hero .hero-container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   min-width: 300px;
 }
 
